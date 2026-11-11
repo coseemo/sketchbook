@@ -145,9 +145,9 @@ Link: https://arxiv.org/pdf/2402.17431
 
 Riassunto e concetti chiave:
 
-1. Binding problem: associare correttamente caratteristiche le caratteristiche percettive ai singoli oggetti.
-2. Si vuole andare a studiare gli approcci neuro-simbolici.
-3. L'idea è quella di far imparare prima concetti semplici e poi farli rituilizzare in task via va più complessi.
+1. Binding problem: associare correttamente le caratteristiche percettive ai singoli oggetti.
+2. Si vogliono andare a studiare gli approcci neuro-simbolici.
+3. L'idea è quella di far imparare prima concetti semplici e poi farli riutilizzare in task via va più complessi.
 4. Un altro spunto è quello di andare a rimuovere via via le etichette dai dati, in modo che il modello impari anche dagli esempi non etichettati.
 5. Continual Learning: apprendere progressivamente da task o dati che arrivano nel tempo, cercando di preservare quanto già acquisito
 6. Semi-Supervised learning: apprendere una combinazione di esempi etichettati e non etichettati.

@@ -4,3 +4,5 @@
 # Ambienti virtuali
 .venv/
 
+# Dati
+/data/
