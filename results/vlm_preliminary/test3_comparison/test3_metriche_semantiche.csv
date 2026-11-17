@@ -1,0 +1,5 @@
+model,dataset,ipotesi_generate,corrette,parziali,sbagliate,non_valutabili,non_revisionate,review_coverage_%,semantic_coverage_%,corrette_%,parziali_%,sbagliate_%
+Gemma 4 E2B-it Q4_0,KANDY,760,1,57,702,0,0,100.0,100.0,0.13,7.5,92.37
+Gemma 4 E2B-it Q4_0,RWR+,760,7,14,739,0,0,100.0,100.0,0.92,1.84,97.24
+Qwen 3.5 2B Q4_K_M,KANDY,760,26,66,668,0,0,100.0,100.0,3.42,8.68,87.89
+Qwen 3.5 2B Q4_K_M,RWR+,760,0,3,757,0,0,100.0,100.0,0.0,0.39,99.61

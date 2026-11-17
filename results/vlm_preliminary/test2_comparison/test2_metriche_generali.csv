@@ -1,0 +1,5 @@
+model,dataset,richieste,YES_attesi,NO_attesi,accuracy_%,balanced_accuracy_%,precision_yes_%,recall_yes_%,f1_yes_%,precision_no_%,recall_no_%,f1_no_%,macro_f1_%,mcc,cohen_kappa,output_validi_%,accuracy_su_validi_%
+Gemma 4 E2B-it Q4_0,KANDY,50,25,25,70.0,70.0,72.73,64.0,68.09,67.86,76.0,71.7,69.89,0.403,0.4,100.0,70.0
+Gemma 4 E2B-it Q4_0,RWR+,50,25,25,76.0,76.0,78.26,72.0,75.0,74.07,80.0,76.92,75.96,0.522,0.52,100.0,76.0
+Qwen 3.5 2B Q4_K_M,KANDY,50,25,25,60.0,60.0,69.23,36.0,47.37,56.76,84.0,67.74,57.56,0.228,0.2,100.0,60.0
+Qwen 3.5 2B Q4_K_M,RWR+,50,25,25,82.0,82.0,86.36,76.0,80.85,78.57,88.0,83.02,81.93,0.645,0.64,100.0,82.0

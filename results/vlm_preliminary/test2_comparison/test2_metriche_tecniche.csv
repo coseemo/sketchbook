@@ -1,0 +1,5 @@
+model_label,dataset,richieste,tempo_medio_s,tempo_mediano_s,tempo_totale_s,tempo_totale_min
+Gemma 4 E2B-it Q4_0,KANDY,50,67.24,60.06,3362.0,56.03
+Gemma 4 E2B-it Q4_0,RWR+,50,64.25,55.96,3212.66,53.54
+Qwen 3.5 2B Q4_K_M,KANDY,50,67.04,50.31,3352.24,55.87
+Qwen 3.5 2B Q4_K_M,RWR+,50,78.48,70.84,3923.88,65.4

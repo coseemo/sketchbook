@@ -1,0 +1,77 @@
+dataset,problem_id,hit_at_20_gemma4_e2b_it,hit_at_20_qwen35_2b,mrr_gemma4_e2b_it,mrr_qwen35_2b,confronto_hit20
+KANDY,easy-0,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-1,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-10,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-11,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-12,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-13,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-14,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-15,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-16,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-17,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-18,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-19,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-2,0.0,1.0,0.0,0.3333333333333333,Qwen migliore
+KANDY,easy-3,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-4,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-5,1.0,1.0,0.125,1.0,Parità
+KANDY,easy-6,0.0,1.0,0.0,1.0,Qwen migliore
+KANDY,easy-7,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-8,0.0,0.0,0.0,0.0,Parità
+KANDY,easy-9,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-0,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-1,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-10,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-11,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-12,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-13,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-14,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-15,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-16,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-17,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-2,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-3,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-4,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-5,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-6,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-7,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-8,0.0,0.0,0.0,0.0,Parità
+KANDY,hard-9,0.0,0.0,0.0,0.0,Parità
+RWR+,Q01,0.0,0.0,0.0,0.0,Parità
+RWR+,Q02,0.0,0.0,0.0,0.0,Parità
+RWR+,Q03,0.0,0.0,0.0,0.0,Parità
+RWR+,Q04,0.0,0.0,0.0,0.0,Parità
+RWR+,Q05,0.0,0.0,0.0,0.0,Parità
+RWR+,Q06,0.0,0.0,0.0,0.0,Parità
+RWR+,Q07,1.0,0.0,0.08333333333333333,0.0,Gemma migliore
+RWR+,Q08,0.0,0.0,0.0,0.0,Parità
+RWR+,Q09,0.0,0.0,0.0,0.0,Parità
+RWR+,Q10,1.0,0.0,0.058823529411764705,0.0,Gemma migliore
+RWR+,Q11,0.0,0.0,0.0,0.0,Parità
+RWR+,Q12,0.0,0.0,0.0,0.0,Parità
+RWR+,Q13,0.0,0.0,0.0,0.0,Parità
+RWR+,Q14,0.0,0.0,0.0,0.0,Parità
+RWR+,Q15,1.0,0.0,0.25,0.0,Gemma migliore
+RWR+,Q16,0.0,0.0,0.0,0.0,Parità
+RWR+,Q17,0.0,0.0,0.0,0.0,Parità
+RWR+,Q18,0.0,0.0,0.0,0.0,Parità
+RWR+,Q19,0.0,0.0,0.0,0.0,Parità
+RWR+,Q20,0.0,0.0,0.0,0.0,Parità
+RWR+,Q21,0.0,0.0,0.0,0.0,Parità
+RWR+,Q22,0.0,0.0,0.0,0.0,Parità
+RWR+,Q23,0.0,0.0,0.0,0.0,Parità
+RWR+,Q24,0.0,0.0,0.0,0.0,Parità
+RWR+,Q25,0.0,0.0,0.0,0.0,Parità
+RWR+,Q26,0.0,0.0,0.0,0.0,Parità
+RWR+,Q27,1.0,0.0,0.0625,0.0,Gemma migliore
+RWR+,Q28,0.0,0.0,0.0,0.0,Parità
+RWR+,Q29,0.0,0.0,0.0,0.0,Parità
+RWR+,Q30,0.0,0.0,0.0,0.0,Parità
+RWR+,Q31,0.0,0.0,0.0,0.0,Parità
+RWR+,Q32,0.0,0.0,0.0,0.0,Parità
+RWR+,Q33,0.0,0.0,0.0,0.0,Parità
+RWR+,Q34,0.0,0.0,0.0,0.0,Parità
+RWR+,Q35,0.0,0.0,0.0,0.0,Parità
+RWR+,Q36,0.0,0.0,0.0,0.0,Parità
+RWR+,Q37,0.0,0.0,0.0,0.0,Parità
+RWR+,Q38,1.0,0.0,0.1,0.0,Gemma migliore

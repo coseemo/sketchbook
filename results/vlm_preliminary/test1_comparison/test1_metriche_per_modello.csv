@@ -1,0 +1,3 @@
+model_label,regole_totali,regole_valutate,copertura_%,corrette,parziali,sbagliate,corrette_%,parziali_%,sbagliate_%,punteggio_medio
+Gemma 4 E2B-it,152,152,100.0,5,12,135,3.3,7.9,88.8,0.072
+Qwen 3.5 2B,152,152,100.0,15,7,130,9.9,4.6,85.5,0.122

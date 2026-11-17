@@ -1,0 +1,5 @@
+model_label,dataset,correct,partial,incorrect,uncertain,not_reviewed
+Gemma 4 E2B-it Q4_0,KANDY,1,57,702,0,0
+Gemma 4 E2B-it Q4_0,RWR+,7,14,739,0,0
+Qwen 3.5 2B Q4_K_M,KANDY,26,66,668,0,0
+Qwen 3.5 2B Q4_K_M,RWR+,0,3,757,0,0

@@ -1,0 +1,17 @@
+model,dataset,image_side,rule_side,combinazione,classe_attesa,richieste,corrette,accuracy_%,risposte_yes_%,risposte_no_%,output_validi_%
+Gemma 4 E2B-it Q4_0,KANDY,left,left,Immagine LEFT / Regola LEFT,YES,13,6,46.15,46.15,53.85,100.0
+Gemma 4 E2B-it Q4_0,KANDY,left,right,Immagine LEFT / Regola RIGHT,NO,13,8,61.54,38.46,61.54,100.0
+Gemma 4 E2B-it Q4_0,KANDY,right,left,Immagine RIGHT / Regola LEFT,NO,12,11,91.67,8.33,91.67,100.0
+Gemma 4 E2B-it Q4_0,KANDY,right,right,Immagine RIGHT / Regola RIGHT,YES,12,10,83.33,83.33,16.67,100.0
+Gemma 4 E2B-it Q4_0,RWR+,left,left,Immagine LEFT / Regola LEFT,YES,12,10,83.33,83.33,16.67,100.0
+Gemma 4 E2B-it Q4_0,RWR+,left,right,Immagine LEFT / Regola RIGHT,NO,12,11,91.67,8.33,91.67,100.0
+Gemma 4 E2B-it Q4_0,RWR+,right,left,Immagine RIGHT / Regola LEFT,NO,13,9,69.23,30.77,69.23,100.0
+Gemma 4 E2B-it Q4_0,RWR+,right,right,Immagine RIGHT / Regola RIGHT,YES,13,8,61.54,61.54,38.46,100.0
+Qwen 3.5 2B Q4_K_M,KANDY,left,left,Immagine LEFT / Regola LEFT,YES,13,5,38.46,38.46,61.54,100.0
+Qwen 3.5 2B Q4_K_M,KANDY,left,right,Immagine LEFT / Regola RIGHT,NO,13,9,69.23,30.77,69.23,100.0
+Qwen 3.5 2B Q4_K_M,KANDY,right,left,Immagine RIGHT / Regola LEFT,NO,12,12,100.0,0.0,100.0,100.0
+Qwen 3.5 2B Q4_K_M,KANDY,right,right,Immagine RIGHT / Regola RIGHT,YES,12,4,33.33,33.33,66.67,100.0
+Qwen 3.5 2B Q4_K_M,RWR+,left,left,Immagine LEFT / Regola LEFT,YES,12,10,83.33,83.33,16.67,100.0
+Qwen 3.5 2B Q4_K_M,RWR+,left,right,Immagine LEFT / Regola RIGHT,NO,12,10,83.33,16.67,83.33,100.0
+Qwen 3.5 2B Q4_K_M,RWR+,right,left,Immagine RIGHT / Regola LEFT,NO,13,12,92.31,7.69,92.31,100.0
+Qwen 3.5 2B Q4_K_M,RWR+,right,right,Immagine RIGHT / Regola RIGHT,YES,13,9,69.23,69.23,30.77,100.0

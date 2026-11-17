@@ -1,0 +1,5 @@
+model,dataset,problemi_totali,problemi_valutati,incompleti,entrambi_corretti,parzialmente_corretti,almeno_una_sbagliata,entrambi_corretti_%,parzialmente_corretti_%,almeno_una_sbagliata_%
+Gemma 4 E2B-it,KANDY,38,38,0,0,4,34,0.0,10.5,89.5
+Gemma 4 E2B-it,RWR+,38,38,0,0,0,38,0.0,0.0,100.0
+Qwen 3.5 2B,KANDY,38,38,0,4,2,32,10.5,5.3,84.2
+Qwen 3.5 2B,RWR+,38,38,0,1,1,36,2.6,2.6,94.7

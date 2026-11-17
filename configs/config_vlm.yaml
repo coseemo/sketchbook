@@ -1,0 +1,68 @@
+#configurazione generale del progetto
+paths:
+  processed_dir: "data/processed"
+  results_dir: "results"
+  experiments_dir: "results/vlm_preliminary"
+
+#dataset disponibili e relativi manifest
+datasets:
+  kandy:
+    label: "KANDY Bongard"
+    folder: "dataset_1_kandy"
+    manifest: "manifest.csv"
+
+  rwr_plus:
+    label: "Bongard-RWR+"
+    folder: "dataset_2_rwr_plus"
+    manifest: "manifest.csv"
+
+  overlap:
+    label: "Intersezione KANDY-RWR+"
+    folder: "dataset_3_overlap"
+    manifest: "manifest.csv"
+    image_manifest: "image_manifest.csv"
+    cross_test_manifest: "cross_test/manifest.csv"
+
+#modello da utilizzare e modelli disponibili
+models:
+  active: "qwen35_2b"
+  hf_cache_dir: "~/.cache/huggingface/hub"
+  available:
+    qwen35_2b:
+      label: "Qwen 3.5 2B Q4_K_M"
+      repo: "models--gguf--Qwen3.5-2B-GGUF"
+      model_file: "qwen3.5-2b-Q4_K_M.gguf"
+      mmproj_file: "mmproj-qwen3.5-2b-F16.gguf"
+      model_path: null
+      mmproj_path: null
+
+    gemma4_e2b_it:
+      label: "Gemma 4 E2B-it Q4_0"
+      repo: "models--ggml-org--gemma-4-E2B-it-GGUF"
+      model_file: "gemma-4-E2B-it-Q4_0.gguf"
+      mmproj_file: "mmproj-gemma-4-E2B-it-Q8_0.gguf"
+      model_path: null
+      mmproj_path: null
+
+#impostazioni di llama.cpp
+server:
+  executable: "llama-server"
+  host: "127.0.0.1"
+  port: 8080
+  context_size: 8192
+  reasoning_budget: 512
+  reasoning_budget_message: "Stop analyzing and provide the final answer now. Follow the requested output format exactly."
+  cpu_threads: 8
+  gpu_layers: 0
+  mmproj_offload: false
+  request_timeout: 600
+
+#impostazioni delle prove preliminari
+experiment:
+  run_mode: "full"
+  pilot_limit: 1
+  temperature: 0.0
+  top_p: 1.0
+  seed: 42
+  max_output_tokens: 1024
+  thinking_enabled: true

@@ -1,0 +1,153 @@
+dataset,problem_id,side,gemma4_e2b_it,qwen35_2b,comparison
+KANDY,easy-0,left,1.0,1.0,Parità
+KANDY,easy-0,right,0.5,1.0,Qwen migliore
+KANDY,easy-1,left,0.0,1.0,Qwen migliore
+KANDY,easy-1,right,0.0,0.5,Qwen migliore
+KANDY,easy-10,left,0.0,0.0,Parità
+KANDY,easy-10,right,0.0,0.0,Parità
+KANDY,easy-11,left,0.0,0.0,Parità
+KANDY,easy-11,right,0.0,0.0,Parità
+KANDY,easy-12,left,0.0,0.0,Parità
+KANDY,easy-12,right,0.0,0.0,Parità
+KANDY,easy-13,left,0.0,0.5,Qwen migliore
+KANDY,easy-13,right,0.0,0.0,Parità
+KANDY,easy-14,left,0.0,0.0,Parità
+KANDY,easy-14,right,0.0,0.0,Parità
+KANDY,easy-15,left,0.5,0.5,Parità
+KANDY,easy-15,right,0.0,0.0,Parità
+KANDY,easy-16,left,0.5,1.0,Qwen migliore
+KANDY,easy-16,right,0.0,0.0,Parità
+KANDY,easy-17,left,0.0,0.0,Parità
+KANDY,easy-17,right,0.0,0.0,Parità
+KANDY,easy-18,left,0.0,0.0,Parità
+KANDY,easy-18,right,0.0,0.0,Parità
+KANDY,easy-19,left,0.0,0.0,Parità
+KANDY,easy-19,right,0.0,0.0,Parità
+KANDY,easy-2,left,1.0,1.0,Parità
+KANDY,easy-2,right,0.5,1.0,Qwen migliore
+KANDY,easy-3,left,1.0,1.0,Parità
+KANDY,easy-3,right,0.5,1.0,Qwen migliore
+KANDY,easy-4,left,1.0,1.0,Parità
+KANDY,easy-4,right,0.5,0.0,Gemma migliore
+KANDY,easy-5,left,0.5,0.5,Parità
+KANDY,easy-5,right,0.0,0.0,Parità
+KANDY,easy-6,left,1.0,1.0,Parità
+KANDY,easy-6,right,0.0,0.5,Qwen migliore
+KANDY,easy-7,left,0.0,0.0,Parità
+KANDY,easy-7,right,0.0,0.0,Parità
+KANDY,easy-8,left,0.5,1.0,Qwen migliore
+KANDY,easy-8,right,0.0,1.0,Qwen migliore
+KANDY,easy-9,left,0.5,0.0,Gemma migliore
+KANDY,easy-9,right,0.0,0.0,Parità
+KANDY,hard-0,left,0.0,0.0,Parità
+KANDY,hard-0,right,0.0,0.0,Parità
+KANDY,hard-1,left,0.0,0.0,Parità
+KANDY,hard-1,right,0.0,0.0,Parità
+KANDY,hard-10,left,0.0,0.0,Parità
+KANDY,hard-10,right,0.0,0.0,Parità
+KANDY,hard-11,left,0.0,0.0,Parità
+KANDY,hard-11,right,0.0,0.0,Parità
+KANDY,hard-12,left,0.0,0.0,Parità
+KANDY,hard-12,right,0.0,0.0,Parità
+KANDY,hard-13,left,0.0,0.0,Parità
+KANDY,hard-13,right,0.0,0.0,Parità
+KANDY,hard-14,left,0.0,0.0,Parità
+KANDY,hard-14,right,0.0,0.0,Parità
+KANDY,hard-15,left,0.0,0.0,Parità
+KANDY,hard-15,right,0.0,0.0,Parità
+KANDY,hard-16,left,0.0,0.0,Parità
+KANDY,hard-16,right,0.0,0.0,Parità
+KANDY,hard-17,left,0.0,0.0,Parità
+KANDY,hard-17,right,0.0,0.0,Parità
+KANDY,hard-2,left,0.0,0.0,Parità
+KANDY,hard-2,right,0.0,0.0,Parità
+KANDY,hard-3,left,0.0,0.0,Parità
+KANDY,hard-3,right,0.0,0.0,Parità
+KANDY,hard-4,left,0.0,0.0,Parità
+KANDY,hard-4,right,0.0,0.0,Parità
+KANDY,hard-5,left,0.0,0.0,Parità
+KANDY,hard-5,right,0.0,0.0,Parità
+KANDY,hard-6,left,0.0,0.0,Parità
+KANDY,hard-6,right,0.0,0.0,Parità
+KANDY,hard-7,left,0.0,0.0,Parità
+KANDY,hard-7,right,0.0,0.0,Parità
+KANDY,hard-8,left,0.0,0.0,Parità
+KANDY,hard-8,right,0.0,0.0,Parità
+KANDY,hard-9,left,0.0,0.0,Parità
+KANDY,hard-9,right,0.0,0.0,Parità
+RWR+,Q01,left,0.5,0.0,Gemma migliore
+RWR+,Q01,right,0.0,0.0,Parità
+RWR+,Q02,left,0.0,0.0,Parità
+RWR+,Q02,right,0.0,0.0,Parità
+RWR+,Q03,left,0.0,1.0,Qwen migliore
+RWR+,Q03,right,0.0,1.0,Qwen migliore
+RWR+,Q04,left,0.0,0.0,Parità
+RWR+,Q04,right,0.0,0.0,Parità
+RWR+,Q05,left,0.0,0.0,Parità
+RWR+,Q05,right,0.0,0.0,Parità
+RWR+,Q06,left,0.0,0.0,Parità
+RWR+,Q06,right,0.0,0.0,Parità
+RWR+,Q07,left,0.0,0.0,Parità
+RWR+,Q07,right,0.0,0.0,Parità
+RWR+,Q08,left,0.0,0.0,Parità
+RWR+,Q08,right,0.0,0.0,Parità
+RWR+,Q09,left,0.0,0.0,Parità
+RWR+,Q09,right,0.0,0.0,Parità
+RWR+,Q10,left,0.0,0.0,Parità
+RWR+,Q10,right,0.0,0.0,Parità
+RWR+,Q11,left,0.0,0.0,Parità
+RWR+,Q11,right,0.0,0.0,Parità
+RWR+,Q12,left,0.0,0.0,Parità
+RWR+,Q12,right,0.0,0.0,Parità
+RWR+,Q13,left,0.0,0.0,Parità
+RWR+,Q13,right,0.0,0.0,Parità
+RWR+,Q14,left,0.5,0.0,Gemma migliore
+RWR+,Q14,right,0.0,0.0,Parità
+RWR+,Q15,left,0.0,0.0,Parità
+RWR+,Q15,right,0.0,0.0,Parità
+RWR+,Q16,left,0.0,0.0,Parità
+RWR+,Q16,right,0.0,0.0,Parità
+RWR+,Q17,left,0.0,0.0,Parità
+RWR+,Q17,right,0.0,0.0,Parità
+RWR+,Q18,left,0.0,0.0,Parità
+RWR+,Q18,right,0.0,0.0,Parità
+RWR+,Q19,left,0.0,0.0,Parità
+RWR+,Q19,right,0.0,0.0,Parità
+RWR+,Q20,left,0.0,0.0,Parità
+RWR+,Q20,right,0.0,0.0,Parità
+RWR+,Q21,left,0.0,0.5,Qwen migliore
+RWR+,Q21,right,0.0,0.5,Qwen migliore
+RWR+,Q22,left,0.0,0.0,Parità
+RWR+,Q22,right,0.0,0.0,Parità
+RWR+,Q23,left,0.0,0.0,Parità
+RWR+,Q23,right,0.0,0.0,Parità
+RWR+,Q24,left,0.0,0.0,Parità
+RWR+,Q24,right,0.0,0.0,Parità
+RWR+,Q25,left,0.0,0.0,Parità
+RWR+,Q25,right,0.0,0.0,Parità
+RWR+,Q26,left,0.0,0.0,Parità
+RWR+,Q26,right,0.0,0.0,Parità
+RWR+,Q27,left,0.0,0.0,Parità
+RWR+,Q27,right,0.0,0.0,Parità
+RWR+,Q28,left,0.0,0.0,Parità
+RWR+,Q28,right,0.0,0.0,Parità
+RWR+,Q29,left,0.0,0.0,Parità
+RWR+,Q29,right,0.0,0.0,Parità
+RWR+,Q30,left,0.0,1.0,Qwen migliore
+RWR+,Q30,right,0.0,0.0,Parità
+RWR+,Q31,left,0.0,0.0,Parità
+RWR+,Q31,right,0.0,0.0,Parità
+RWR+,Q32,left,0.5,0.0,Gemma migliore
+RWR+,Q32,right,0.0,0.0,Parità
+RWR+,Q33,left,0.0,0.0,Parità
+RWR+,Q33,right,0.0,0.0,Parità
+RWR+,Q34,left,0.0,0.0,Parità
+RWR+,Q34,right,0.0,0.0,Parità
+RWR+,Q35,left,0.0,0.0,Parità
+RWR+,Q35,right,0.0,0.0,Parità
+RWR+,Q36,left,0.0,0.0,Parità
+RWR+,Q36,right,0.0,0.0,Parità
+RWR+,Q37,left,0.0,0.0,Parità
+RWR+,Q37,right,0.0,0.0,Parità
+RWR+,Q38,left,0.0,0.0,Parità
+RWR+,Q38,right,0.0,0.0,Parità

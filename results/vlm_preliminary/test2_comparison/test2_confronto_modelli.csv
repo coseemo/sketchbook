@@ -1,0 +1,101 @@
+dataset,task_id,gemma4_e2b_it,qwen35_2b,confronto
+KANDY,apply::KANDY::easy-10::left::03::left,True,False,Gemma migliore
+KANDY,apply::KANDY::easy-10::left::03::right,True,False,Gemma migliore
+KANDY,apply::KANDY::easy-10::right::02::left,True,True,Parità
+KANDY,apply::KANDY::easy-10::right::02::right,True,False,Gemma migliore
+KANDY,apply::KANDY::easy-11::left::05::left,True,False,Gemma migliore
+KANDY,apply::KANDY::easy-11::left::05::right,True,True,Parità
+KANDY,apply::KANDY::easy-11::right::01::left,True,True,Parità
+KANDY,apply::KANDY::easy-11::right::01::right,True,False,Gemma migliore
+KANDY,apply::KANDY::easy-12::left::02::left,True,True,Parità
+KANDY,apply::KANDY::easy-12::left::02::right,True,False,Gemma migliore
+KANDY,apply::KANDY::easy-12::right::03::left,True,True,Parità
+KANDY,apply::KANDY::easy-12::right::03::right,True,False,Gemma migliore
+KANDY,apply::KANDY::easy-13::left::05::left,True,True,Parità
+KANDY,apply::KANDY::easy-13::left::05::right,True,True,Parità
+KANDY,apply::KANDY::easy-4::left::03::left,False,True,Qwen migliore
+KANDY,apply::KANDY::easy-4::left::03::right,False,True,Qwen migliore
+KANDY,apply::KANDY::easy-4::right::03::left,True,True,Parità
+KANDY,apply::KANDY::easy-4::right::03::right,True,True,Parità
+KANDY,apply::KANDY::easy-5::left::02::left,False,True,Qwen migliore
+KANDY,apply::KANDY::easy-5::left::02::right,False,True,Qwen migliore
+KANDY,apply::KANDY::easy-5::right::00::left,True,True,Parità
+KANDY,apply::KANDY::easy-5::right::00::right,True,True,Parità
+KANDY,apply::KANDY::hard-10::left::05::left,True,False,Gemma migliore
+KANDY,apply::KANDY::hard-10::left::05::right,True,True,Parità
+KANDY,apply::KANDY::hard-10::right::02::left,False,True,Qwen migliore
+KANDY,apply::KANDY::hard-10::right::02::right,False,False,Parità
+KANDY,apply::KANDY::hard-12::left::00::left,True,True,Parità
+KANDY,apply::KANDY::hard-12::left::00::right,True,True,Parità
+KANDY,apply::KANDY::hard-12::right::05::left,True,True,Parità
+KANDY,apply::KANDY::hard-12::right::05::right,True,False,Gemma migliore
+KANDY,apply::KANDY::hard-13::left::01::left,False,False,Parità
+KANDY,apply::KANDY::hard-13::left::01::right,True,True,Parità
+KANDY,apply::KANDY::hard-13::right::03::left,True,True,Parità
+KANDY,apply::KANDY::hard-13::right::03::right,True,False,Gemma migliore
+KANDY,apply::KANDY::hard-14::left::02::left,False,False,Parità
+KANDY,apply::KANDY::hard-14::left::02::right,False,True,Qwen migliore
+KANDY,apply::KANDY::hard-14::right::00::left,True,True,Parità
+KANDY,apply::KANDY::hard-14::right::00::right,True,False,Gemma migliore
+KANDY,apply::KANDY::hard-5::left::01::left,False,False,Parità
+KANDY,apply::KANDY::hard-5::left::01::right,False,False,Parità
+KANDY,apply::KANDY::hard-5::right::04::left,True,True,Parità
+KANDY,apply::KANDY::hard-5::right::04::right,True,True,Parità
+KANDY,apply::KANDY::hard-7::left::01::left,False,False,Parità
+KANDY,apply::KANDY::hard-7::left::01::right,False,False,Parità
+KANDY,apply::KANDY::hard-7::right::05::left,True,True,Parità
+KANDY,apply::KANDY::hard-7::right::05::right,True,True,Parità
+KANDY,apply::KANDY::hard-9::left::01::left,False,False,Parità
+KANDY,apply::KANDY::hard-9::left::01::right,True,True,Parità
+KANDY,apply::KANDY::hard-9::right::00::left,True,True,Parità
+KANDY,apply::KANDY::hard-9::right::00::right,False,False,Parità
+RWR+,apply::RWR+::Q04::left::01::left,True,True,Parità
+RWR+,apply::RWR+::Q04::left::01::right,True,True,Parità
+RWR+,apply::RWR+::Q04::right::01::left,True,True,Parità
+RWR+,apply::RWR+::Q04::right::01::right,False,False,Parità
+RWR+,apply::RWR+::Q06::left::00::left,True,True,Parità
+RWR+,apply::RWR+::Q06::left::00::right,False,True,Qwen migliore
+RWR+,apply::RWR+::Q06::right::01::left,False,True,Qwen migliore
+RWR+,apply::RWR+::Q06::right::01::right,True,True,Parità
+RWR+,apply::RWR+::Q07::left::00::left,True,True,Parità
+RWR+,apply::RWR+::Q07::left::00::right,True,False,Gemma migliore
+RWR+,apply::RWR+::Q07::right::00::left,True,True,Parità
+RWR+,apply::RWR+::Q07::right::00::right,True,True,Parità
+RWR+,apply::RWR+::Q08::left::05::left,True,True,Parità
+RWR+,apply::RWR+::Q08::left::05::right,True,True,Parità
+RWR+,apply::RWR+::Q08::right::01::left,True,True,Parità
+RWR+,apply::RWR+::Q08::right::01::right,True,True,Parità
+RWR+,apply::RWR+::Q11::left::03::left,True,True,Parità
+RWR+,apply::RWR+::Q11::left::03::right,True,True,Parità
+RWR+,apply::RWR+::Q11::right::01::left,True,True,Parità
+RWR+,apply::RWR+::Q11::right::01::right,False,True,Qwen migliore
+RWR+,apply::RWR+::Q13::left::04::left,True,True,Parità
+RWR+,apply::RWR+::Q13::left::04::right,True,True,Parità
+RWR+,apply::RWR+::Q13::right::03::left,True,True,Parità
+RWR+,apply::RWR+::Q13::right::03::right,False,True,Qwen migliore
+RWR+,apply::RWR+::Q15::left::02::left,True,False,Gemma migliore
+RWR+,apply::RWR+::Q15::left::02::right,True,True,Parità
+RWR+,apply::RWR+::Q15::right::05::left,False,False,Parità
+RWR+,apply::RWR+::Q15::right::05::right,True,False,Gemma migliore
+RWR+,apply::RWR+::Q16::left::01::left,True,False,Gemma migliore
+RWR+,apply::RWR+::Q16::left::01::right,True,True,Parità
+RWR+,apply::RWR+::Q16::right::05::left,True,True,Parità
+RWR+,apply::RWR+::Q16::right::05::right,True,False,Gemma migliore
+RWR+,apply::RWR+::Q17::left::04::left,False,True,Qwen migliore
+RWR+,apply::RWR+::Q17::left::04::right,True,True,Parità
+RWR+,apply::RWR+::Q17::right::03::left,True,True,Parità
+RWR+,apply::RWR+::Q17::right::03::right,True,False,Gemma migliore
+RWR+,apply::RWR+::Q20::left::02::left,True,True,Parità
+RWR+,apply::RWR+::Q20::left::02::right,True,True,Parità
+RWR+,apply::RWR+::Q20::right::04::left,False,True,Qwen migliore
+RWR+,apply::RWR+::Q20::right::04::right,False,True,Qwen migliore
+RWR+,apply::RWR+::Q21::left::03::left,False,True,Qwen migliore
+RWR+,apply::RWR+::Q21::left::03::right,True,True,Parità
+RWR+,apply::RWR+::Q21::right::02::left,True,True,Parità
+RWR+,apply::RWR+::Q21::right::02::right,True,True,Parità
+RWR+,apply::RWR+::Q30::left::02::left,True,True,Parità
+RWR+,apply::RWR+::Q30::left::02::right,True,False,Gemma migliore
+RWR+,apply::RWR+::Q30::right::00::left,True,True,Parità
+RWR+,apply::RWR+::Q30::right::00::right,False,True,Qwen migliore
+RWR+,apply::RWR+::Q31::right::03::left,False,True,Qwen migliore
+RWR+,apply::RWR+::Q31::right::03::right,True,True,Parità

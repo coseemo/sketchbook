@@ -1,0 +1,5 @@
+model,dataset,problemi,output_con_20_ipotesi,output_con_20_ipotesi_%,ipotesi_medie_generate,problemi_con_revisione_completa,revisione_completa_%,problemi_con_revisione_semantica_completa,revisione_semantica_completa_%,problemi_hit1_valutabili,copertura_hit1_%,hit_at_1_%,problemi_hit5_valutabili,copertura_hit5_%,hit_at_5_%,problemi_hit10_valutabili,copertura_hit10_%,hit_at_10_%,problemi_hit20_valutabili,copertura_hit20_%,hit_at_20_%,partial_hit_at_20_%,problemi_mrr_valutabili,mrr,primo_rango_corretto_medio,ipotesi_corrette_medie
+Gemma 4 E2B-it Q4_0,KANDY,38,38,100.0,20.0,38,100.0,38,100.0,38,100.0,0.0,38,100.0,0.0,38,100.0,2.63,38,100.0,2.63,23.68,38,0.0033,8.0,0.03
+Gemma 4 E2B-it Q4_0,RWR+,38,38,100.0,20.0,38,100.0,38,100.0,38,100.0,0.0,38,100.0,2.63,38,100.0,5.26,38,100.0,13.16,23.68,38,0.0146,11.8,0.18
+Qwen 3.5 2B Q4_K_M,KANDY,38,38,100.0,20.0,38,100.0,38,100.0,38,100.0,5.26,38,100.0,7.89,38,100.0,7.89,38,100.0,7.89,15.79,38,0.0614,1.67,0.68
+Qwen 3.5 2B Q4_K_M,RWR+,38,38,100.0,20.0,38,100.0,38,100.0,38,100.0,0.0,38,100.0,0.0,38,100.0,0.0,38,100.0,0.0,5.26,38,0.0,,0.0

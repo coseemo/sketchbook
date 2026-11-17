@@ -1,0 +1,5 @@
+model,dataset,record,output_validi_%,tempo_medio_s,tempo_mediano_s,tempo_totale_min,completion_token_medi,token_s_medi
+Qwen 3.5 2B,KANDY,38,97.4,134.41,147.27,85.12,578.4,8.68
+Qwen 3.5 2B,RWR+,38,97.4,127.22,135.69,80.57,574.7,10.01
+Gemma 4 E2B-it,KANDY,38,100.0,82.2,77.33,52.06,574.8,9.63
+Gemma 4 E2B-it,RWR+,38,100.0,84.56,84.29,53.55,575.2,9.31

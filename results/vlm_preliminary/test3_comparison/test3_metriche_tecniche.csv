@@ -1,0 +1,5 @@
+model_label,dataset,problemi,tempo_medio_s,tempo_mediano_s,tempo_totale_s,valid_output,tempo_totale_min
+Gemma 4 E2B-it Q4_0,KANDY,38,177.78,160.71,6755.45,38,112.59
+Gemma 4 E2B-it Q4_0,RWR+,38,158.0,158.24,6003.86,38,100.06
+Qwen 3.5 2B Q4_K_M,KANDY,38,138.84,135.77,5276.03,38,87.93
+Qwen 3.5 2B Q4_K_M,RWR+,38,139.62,136.91,5305.73,38,88.43
