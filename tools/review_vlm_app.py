@@ -1,6 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Revisore desktop multi-test per esperimenti VLM Bongard.
+"""Revisore desktop per esperimenti VLM Bongard (un JSONL alla volta).
+
+Si apre un solo file di risultati per volta (un test di un modello) e le
+valutazioni vengono salvate accanto ad esso con il nome
+
+    review_<modello>_<numero test>.jsonl
+
+ad esempio results/vlm_preliminary/gemma4_e2b_it/review_gemma_1.jsonl per il
+Test 1 di Gemma. Se il file esiste gia' le valutazioni vengono riprese da dove
+erano rimaste.
 
 Per il Test 3 crea un elemento revisionabile distinto per ciascuna delle prime
 20 coppie LEFT/RIGHT, conservando posizione e identificativo del JSONL sorgente.
@@ -13,6 +22,9 @@ Supporta:
 - Test futuri: visualizzazione generica di immagini, output e metadati.
 
 Le annotazioni vengono salvate in JSONL con schema comune e autosalvataggio.
+
+Uso:
+    python tools/review_vlm_app.py results/vlm_preliminary/<modello>/test_N_*.jsonl
 """
 
 from __future__ import annotations
@@ -39,6 +51,15 @@ MODEL_LABELS = {
     "qwen35_2b": "Qwen 3.5 2B",
     "gemma4_e2b_it": "Gemma 4 E2B-it",
 }
+
+#nomi brevi usati nei file di revisione: review_<nome>_<numero test>.jsonl
+MODEL_SHORT_NAMES = {
+    "qwen35_2b": "qwen",
+    "gemma4_e2b_it": "gemma",
+}
+
+#vecchi file di revisione da cui recuperare automaticamente le valutazioni
+LEGACY_REVIEW_FILES = ("review_all_tests.jsonl", "review_semantica_test1.jsonl")
 
 ASSESSMENT_LABELS = {
     "correct": "Corretta",
@@ -230,6 +251,45 @@ def invert_kandy_concept(concept: str) -> str:
     return f"Absence of the following concept: {concept}" if concept else ""
 
 
+def model_short_name(model) -> str:
+    model = str(model or "").strip()
+    if model in MODEL_SHORT_NAMES:
+        return MODEL_SHORT_NAMES[model]
+    #modello non previsto: usiamo le lettere iniziali (es. "llava16_7b" -> "llava")
+    match = re.match(r"[A-Za-z]+", model)
+    return match.group(0).lower() if match else "model"
+
+
+def test_short_name(test_name) -> str:
+    #"test_3_generation_20" -> "3"
+    match = re.match(r"test_(\d+)", str(test_name or ""))
+    if match:
+        return match.group(1)
+    cleaned = re.sub(r"[^A-Za-z0-9]+", "-", str(test_name or "")).strip("-").lower()
+    return cleaned or "test"
+
+
+def review_file_name(models, tests) -> str:
+    """Nome del file di revisione, es. review_gemma_1.jsonl.
+
+    Se il JSONL contiene piu' modelli o piu' test i nomi vengono uniti con "-".
+    """
+    model_names = sorted({model_short_name(model) for model in models}) or ["model"]
+    test_names = sorted(
+        {test_short_name(test) for test in tests},
+        key=lambda value: (not value.isdigit(), int(value) if value.isdigit() else 0, value),
+    ) or ["test"]
+    return f"review_{'-'.join(model_names)}_{'-'.join(test_names)}.jsonl"
+
+
+def default_results_dir() -> Path:
+    for base in [Path.cwd(), Path(__file__).resolve().parent.parent]:
+        candidate = base / "results" / "vlm_preliminary"
+        if candidate.is_dir():
+            return candidate
+    return Path.cwd()
+
+
 def stable_id(parts: list[str]) -> str:
     return hashlib.sha1("|".join(parts).encode("utf-8")).hexdigest()
 
@@ -376,37 +436,57 @@ def model_prediction(record: dict, test_name: str) -> str:
 
 
 class ReviewApp:
-    def __init__(self, root: tk.Tk, files: list[Path], project_root: Path | None = None,
+    def __init__(self, root: tk.Tk, source: Path, project_root: Path | None = None,
                  output_path: Path | None = None):
         self.root = root
-        self.files = [p.expanduser().resolve() for p in files if p.is_file()]
-        self.project_root = project_root or discover_project_root(self.files)
-        self.lookup = ReferenceLookup(self.project_root)
-        self.output_path = output_path or self.default_output_path(self.files)
+        self.explicit_root = project_root
+        self.files: list[Path] = []
+        self.project_root: Path | None = None
+        self.lookup = ReferenceLookup(None)
+        self.output_path = Path.cwd() / "review.jsonl"
         self.items: list[dict] = []
         self.annotations: dict[str, dict] = {}
         self.index = 0
         self.current_photo = None
         self.note_dirty = False
-        self._build_items()
-        self._load_annotations()
+        self._load_source(source, explicit_output=output_path)
 
-        self.root.title("Revisione VLM — Tutti i test Bongard")
         self.root.geometry("1420x920")
         self.root.minsize(1100, 740)
         self.root.columnconfigure(0, weight=1)
         self.root.rowconfigure(2, weight=1)
         self._build_ui()
+        self._refresh_header()
         self._update_progress()
         self.show_current()
 
     @staticmethod
-    def default_output_path(files: list[Path]) -> Path:
-        if not files:
-            return Path.cwd() / "review_all_tests.jsonl"
-        parents = [str(p.parent.resolve()) for p in files]
-        common = Path(os.path.commonpath(parents))
-        return common / "review_all_tests.jsonl"
+    def default_output_path(source: Path, items: list[dict]) -> Path:
+        #il file di revisione sta accanto ai risultati: review_<modello>_<test>.jsonl
+        models = [str(item["record"].get("model") or "unknown") for item in items]
+        tests = [item["test"] for item in items]
+        return source.parent / review_file_name(models, tests)
+
+    def _load_source(self, source: Path, explicit_output: Path | None = None):
+        """Carica un solo JSONL e le valutazioni gia' salvate per esso."""
+        source = Path(source).expanduser().resolve()
+        if not source.is_file():
+            raise FileNotFoundError(f"File non trovato: {source}")
+        if source.name.startswith("review_"):
+            raise ValueError(
+                f"{source.name} e' un file di revisione, non un file di risultati.\n"
+                "Apri il JSONL del test (es. test_1_rule_induction_<data>.jsonl)."
+            )
+        self.files = [source]
+        self.project_root = self.explicit_root or discover_project_root(self.files)
+        self.lookup = ReferenceLookup(self.project_root)
+        self.items = []
+        self.annotations = {}
+        self.index = 0
+        self.note_dirty = False
+        self._build_items()
+        self.output_path = explicit_output or self.default_output_path(source, self.items)
+        self._load_annotations()
 
     def _record_images(self, record: dict, test_name: str) -> list[tuple[str, str]]:
         images = []
@@ -580,21 +660,48 @@ class ReviewApp:
         })
 
     def _load_annotations(self):
-        candidates = {self.output_path}
-        #migra automaticamente le revisioni del vecchio revisore Test 1
-        for source in self.files:
-            legacy = source.parent / "review_semantica_test1.jsonl"
-            if legacy.is_file():
-                candidates.add(legacy)
-        for path in candidates:
-            if not path.is_file():
-                continue
+        self.annotations = {}
+
+        #1) il file di revisione di questo JSONL viene caricato per intero
+        if self.output_path.is_file():
             try:
-                for row in load_jsonl(path):
+                for row in load_jsonl(self.output_path):
                     if row.get("review_id"):
                         self.annotations[row["review_id"]] = row
             except Exception as exc:
-                messagebox.showwarning("Revisione non caricata", f"{path}:\n{exc}")
+                messagebox.showwarning("Revisione non caricata", f"{self.output_path}:\n{exc}")
+
+        #2) recupero dai vecchi revisori (review_all_tests.jsonl, ...): si importano
+        #soltanto le valutazioni degli elementi di questo JSONL, senza sovrascrivere
+        current_ids = {item["review_id"] for item in self.items}
+        source = self.files[0]
+        folders = []
+        for folder in (source.parent, source.parent.parent):
+            if folder not in folders:
+                folders.append(folder)
+
+        migrated = 0
+        for folder in folders:
+            for name in LEGACY_REVIEW_FILES:
+                path = folder / name
+                if path == self.output_path or not path.is_file():
+                    continue
+                try:
+                    rows = load_jsonl(path)
+                except Exception as exc:
+                    messagebox.showwarning("Revisione precedente non letta", f"{path}:\n{exc}")
+                    continue
+                for row in rows:
+                    review_id = row.get("review_id")
+                    if review_id in current_ids and review_id not in self.annotations:
+                        self.annotations[review_id] = row
+                        migrated += 1
+
+        if migrated:
+            try:
+                self._write_annotations()
+            except Exception as exc:
+                messagebox.showerror("Errore salvataggio", str(exc))
 
     def _build_ui(self):
         style = ttk.Style()
@@ -609,8 +716,8 @@ class ReviewApp:
         top = ttk.Frame(self.root, padding=(14, 10))
         top.grid(row=0, column=0, sticky="ew")
         top.columnconfigure(0, weight=1)
-        ttk.Label(top, text="Revisione VLM — Test 1, 2, 3, 4 e successivi", style="Title.TLabel").grid(row=0, column=0, sticky="w")
-        ttk.Button(top, text="Carica altri JSONL…", command=self.add_files).grid(row=0, column=1, padx=4)
+        ttk.Label(top, text="Revisione VLM", style="Title.TLabel").grid(row=0, column=0, sticky="w")
+        ttk.Button(top, text="Cambia JSONL…", command=self.choose_source).grid(row=0, column=1, padx=4)
         ttk.Button(top, text="Cartella progetto…", command=self.choose_root).grid(row=0, column=2, padx=4)
         self.source_label = ttk.Label(top, text="", foreground="#555")
         self.source_label.grid(row=1, column=0, columnspan=3, sticky="w", pady=(5, 0))
@@ -687,7 +794,7 @@ class ReviewApp:
         ttk.Button(footer, text="Salta", command=self.next_item).grid(row=0, column=1, padx=(0, 8))
         ttk.Button(footer, text="Annulla valutazione", command=self.clear_rating).grid(row=0, column=2, padx=(0, 8))
         ttk.Button(footer, text="Prossimo non valutato", command=self.next_unreviewed).grid(row=0, column=3, padx=(0, 8))
-        self.save_label = ttk.Label(footer, text=f"Salvataggio: {self.output_path}", foreground="#555")
+        self.save_label = ttk.Label(footer, text="", foreground="#555")
         self.save_label.grid(row=0, column=4, sticky="e")
 
         self.root.bind_all("<Left>", lambda event: self._key_rate(event, "incorrect", "left"))
@@ -696,9 +803,25 @@ class ReviewApp:
         self.root.bind_all("<Down>", lambda event: self._key_rate(event, "uncertain", "down"))
         self.root.bind_all("<Escape>", lambda event: self.next_item())
 
+    def _refresh_header(self):
+        tests = sorted({item["test"] for item in self.items})
+        models = []
+        for item in self.items:
+            record = item["record"]
+            model = str(record.get("model", "unknown"))
+            label = record.get("model_label") or MODEL_LABELS.get(model, model)
+            if label not in models:
+                models.append(label)
+        title = " · ".join(filter(None, [
+            ", ".join(test.replace("_", " ").upper() for test in tests),
+            ", ".join(models),
+        ]))
+        self.root.title(f"Revisione VLM — {title}" if title else "Revisione VLM")
         self.source_label.configure(
-            text=f"{len(self.files)} file · {len(self.items)} elementi da revisionare · output: {self.output_path}"
+            text=f"{self.files[0].name} · {len(self.items)} elementi da revisionare · "
+                 f"salvataggio in: {self.output_path.name}"
         )
+        self.save_label.configure(text=f"Salvataggio: {self.output_path}")
 
     def _render_images(self, item: dict):
         entries = item.get("images", [])
@@ -750,6 +873,15 @@ class ReviewApp:
         item = self._current_item()
         if item is None:
             self.problem_label.configure(text="Nessun elemento caricato")
+            self.item_label.configure(text="")
+            self.details.configure(state="normal")
+            self.details.delete("1.0", "end")
+            self.details.configure(state="disabled")
+            self.notes.delete("1.0", "end")
+            self.image_label.configure(image="", text="")
+            self.image_path_label.configure(text="")
+            self.status_label.configure(text="")
+            self._update_progress()
             return
         self._save_note(silent=True)
         record = item["record"]
@@ -986,56 +1118,35 @@ class ReviewApp:
         self.rate(assessment, gesture)
         return "break"
 
-    def add_files(self):
-        paths = filedialog.askopenfilenames(
-            parent=self.root, title="Aggiungi JSONL di qualsiasi test",
-            filetypes=[("File JSONL", "*.jsonl"), ("Tutti i file", "*.*")],
+    def choose_source(self):
+        """Passa a un altro JSONL di risultati (uno solo alla volta)."""
+        self._save_note(silent=True)
+        initial = self.files[0].parent if self.files else default_results_dir()
+        selected = filedialog.askopenfilename(
+            parent=self.root, title="Seleziona il JSONL dei risultati da revisionare",
+            initialdir=str(initial),
+            filetypes=[("Risultati dei test", "test_*.jsonl"), ("File JSONL", "*.jsonl"), ("Tutti i file", "*.*")],
         )
-        if not paths:
+        if not selected:
             return
-        new_paths = [Path(p).resolve() for p in paths if Path(p).resolve() not in self.files]
-        if not new_paths:
+        backup = (self.files, self.project_root, self.lookup, self.items,
+                  self.output_path, self.annotations, self.index)
+        try:
+            self._load_source(Path(selected))
+        except Exception as exc:
+            (self.files, self.project_root, self.lookup, self.items,
+             self.output_path, self.annotations, self.index) = backup
+            messagebox.showerror("File non caricato", str(exc))
             return
-        self.files.extend(new_paths)
-        if self.project_root is None:
-            self.project_root = discover_project_root(new_paths)
-            self.lookup = ReferenceLookup(self.project_root)
-        old_count = len(self.items)
-        self._build_items_from_files(new_paths)
-        self._load_annotation_files(new_paths)
-        self.source_label.configure(text=f"{len(self.files)} file · {len(self.items)} elementi da revisionare · output: {self.output_path}")
-        if len(self.items) > old_count:
-            self.index = old_count
-            self.show_current()
-
-    def _build_items_from_files(self, files):
-        #riusa il costruttore principale senza perdere le annotazioni gia' caricate
-        previous_files = self.files
-        previous_items = self.items
-        self.files = files
-        self.items = []
-        self._build_items()
-        added = self.items
-        self.items = previous_items + added
-        self.files = previous_files
-
-    def _load_annotation_files(self, files):
-        candidates = {self.output_path}
-        for source in files:
-            legacy = source.parent / "review_semantica_test1.jsonl"
-            if legacy.is_file():
-                candidates.add(legacy)
-        for path in candidates:
-            if path.is_file():
-                for row in load_jsonl(path):
-                    if row.get("review_id"):
-                        self.annotations[row["review_id"]] = row
+        self._refresh_header()
+        self.show_current()
 
     def choose_root(self):
         selected = filedialog.askdirectory(parent=self.root, title="Seleziona la root del progetto (contiene data/processed)")
         if not selected:
             return
-        self.project_root = Path(selected).resolve()
+        self.explicit_root = Path(selected).resolve()
+        self.project_root = self.explicit_root
         self.lookup = ReferenceLookup(self.project_root)
         current_id = self.items[self.index]["review_id"] if self.items else None
         self.items = []
@@ -1046,30 +1157,38 @@ class ReviewApp:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Revisore desktop per tutti i test VLM Bongard")
-    parser.add_argument("files", nargs="*", help="Uno o piu' JSONL dei Test 1, 2, 3, 4 o successivi")
+    parser = argparse.ArgumentParser(description="Revisore desktop per i test VLM Bongard (un JSONL alla volta)")
+    parser.add_argument("file", nargs="?",
+                        help="JSONL dei risultati di un solo test, es. test_1_rule_induction_<data>.jsonl")
     parser.add_argument("--root", help="Root del progetto che contiene data/processed")
-    parser.add_argument("--output", help="Percorso del JSONL delle annotazioni")
+    parser.add_argument("--output", help="Percorso del file di revisione (default: review_<modello>_<test>.jsonl "
+                                         "nella cartella del JSONL)")
     args = parser.parse_args()
 
-    files = [Path(value).expanduser().resolve() for value in args.files]
-    if not files:
-        root = tk.Tk()
-        root.withdraw()
-        selected = filedialog.askopenfilenames(
-            title="Seleziona uno o più JSONL di qualsiasi test",
-            filetypes=[("File JSONL", "*.jsonl"), ("Tutti i file", "*.*")],
+    if args.file:
+        source = Path(args.file).expanduser().resolve()
+    else:
+        picker = tk.Tk()
+        picker.withdraw()
+        selected = filedialog.askopenfilename(
+            title="Seleziona il JSONL dei risultati da revisionare",
+            initialdir=str(default_results_dir()),
+            filetypes=[("Risultati dei test", "test_*.jsonl"), ("File JSONL", "*.jsonl"), ("Tutti i file", "*.*")],
         )
-        root.destroy()
-        files = [Path(value).resolve() for value in selected]
-    if not files:
-        raise SystemExit("Nessun file JSONL selezionato.")
+        picker.destroy()
+        if not selected:
+            raise SystemExit("Nessun file JSONL selezionato.")
+        source = Path(selected).resolve()
 
-    project_root = Path(args.root).expanduser().resolve() if args.root else discover_project_root(files)
+    project_root = Path(args.root).expanduser().resolve() if args.root else None
     output_path = Path(args.output).expanduser().resolve() if args.output else None
 
     root = tk.Tk()
-    ReviewApp(root, files=files, project_root=project_root, output_path=output_path)
+    try:
+        ReviewApp(root, source=source, project_root=project_root, output_path=output_path)
+    except (OSError, ValueError) as exc:
+        root.destroy()
+        raise SystemExit(str(exc))
     root.mainloop()
 
 
