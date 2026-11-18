@@ -175,10 +175,10 @@ Per i modelli ho usato le seguenti configurazioni presenti nel file /configs/con
 #modello da utilizzare e modelli disponibili
 models:
 
-  #modello per avviare gli esperimenti preliminari
+  #modello attivo su cui vengono eseguiti gli esperimenti
   active: "gemma4_e2b_it" / "qwen35_2b"
 
-  #cartella della cache locale di hugging face per recuperare i modelli già scaricati senza doverli riscaricare
+  #cartella della cache locale di hugging face per recuperare i modelli
   hf_cache_dir: "~/.cache/huggingface/hub"
 
   available:
@@ -186,13 +186,13 @@ models:
     #qwen 3.5 2b
     qwen35_2b:
 
-      #nome descrittivo per identificare il modello nei risultati degli esperimenti
+      #nome per identificare il modello nei risultati degli esperimenti
       label: "Qwen 3.5 2B Q4_K_M"
 
       #nome della repository nella cache di hugging face per individuare i file del modello
       repo: "models--gguf--Qwen3.5-2B-GGUF"
 
-      #versione quantizzata a 4 bit Q4_K_M per ridurre l'occupazione di memoria e consentire esecuzione più rapida
+      #versione quantizzata a 4 bit per consentire un'esecuzione più rapida
       model_file: "qwen3.5-2b-Q4_K_M.gguf"
 
       #proiettore multimodale in f16 per conservare una maggiore precisione nella componente visiva
@@ -201,10 +201,9 @@ models:
     #gemma 4 e2b-it
     gemma4_e2b_it:
 
-      #nome descrittivo per identificare il modello nei risultati degli esperimenti
+      #nome per identificare il modello nei risultati degli esperimenti
       label: "Gemma 4 E2B-it Q4_0"
 
-      #nome della repository nella cache di hugging face per individuare i file del modello
       repo: "models--ggml-org--gemma-4-E2B-it-GGUF"
 
       #anche qui modello quantizzato a 4 bit
@@ -237,16 +236,16 @@ server:
   #aggiunta perché spesso i modelli non 
   reasoning_budget_message: "Stop analyzing and provide the final answer now. Follow the requested output format exactly."
 
-  #8 thread cpu come configurazione iniziale per sfruttare il processore del mio computer
+  #8 thread cpu per sfruttare il processore del mio computer
   cpu_threads: 8
 
-  #ho impostato 0 per eseguire tutti i layer del modello sulla cpu senza effettuare offload sulla gpu
+  #ho impostato 0 per eseguire tutti i layer del modello sulla cpu 
   gpu_layers: 0
 
   #ho impostato false per mantenere anche il proiettore multimodale sulla cpu
   mmproj_offload: false
 
-  #timeout di 600 secondi per concedere al modello un tempo sufficiente per completare le richieste più impegnative
+  #timeout di 600 secondi 
   request_timeout: 600
 
 
